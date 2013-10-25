@@ -25,13 +25,17 @@ node[:deploy].each do |app_name, deploy|
        File.directory?("#{deploy[:deploy_to]}/current")
      end
   end
-  bash "cache_logs_perms" do
-    user "root"
-    cwd "#{deploy[:deploy_to]}/current"
-    code <<-EOH
-    chmod -Rf 777 app/cache
-    chmod -Rf 777 app/logs
-    EOH
+  directory "#{deploy[:deploy_to]/current/app/cache}" do
+    owner "deploy"
+    group "www-data"
+    mode 00777
+    action :create
+  end
+  directory "#{deploy[:deploy_to]/current/app/logs}" do
+    owner "deploy"
+    group "www-data"
+    mode 00777
+    action :create
   end
   script "install_composer" do
     interpreter "bash"
