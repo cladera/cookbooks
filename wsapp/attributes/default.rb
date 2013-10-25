@@ -1,1 +1,1 @@
-defatul[:wsapp][:dbtable] = 'webcasting_studio'
+default[:wsapp][:domain] = 'example.net'

@@ -25,8 +25,10 @@ node[:deploy].each do |app_name, deploy|
       :user =>     (deploy[:database][:username] rescue nil),
       :password => (deploy[:database][:password] rescue nil),
       :db =>       (deploy[:database][:database] rescue nil),
-      :table =>    (node[:wsapp][:dbtable] rescue nil),
-      :s3bucket => (node[:wsmediabucket] rescue nil)
+      :domain =>    (node[:wsapp][:domain] rescue nil),
+      :media_bucket => (node[:wsmediabucket] rescue nil),
+      :aws_access_key => (node[:awsaccess] rescue nil),
+      :aws_secret_key => (node[:awssecret] rescue nil)
     )
 
    only_if do
