@@ -25,18 +25,6 @@ node[:deploy].each do |app_name, deploy|
        File.directory?("#{deploy[:deploy_to]}/current")
      end
   end
-  directory "#{deploy[:deploy_to]/current/app/cache}" do
-    owner "deploy"
-    group "www-data"
-    mode 00777
-    action :create
-  end
-  directory "#{deploy[:deploy_to]/current/app/logs}" do
-    owner "deploy"
-    group "www-data"
-    mode 00777
-    action :create
-  end
   script "install_composer" do
     interpreter "bash"
     user "root"
