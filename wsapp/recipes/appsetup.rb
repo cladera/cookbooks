@@ -25,8 +25,7 @@ node[:deploy].each do |app_name, deploy|
        File.directory?("#{deploy[:deploy_to]}/current")
      end
   end
-  script "cache_logs_perms" do
-    interpreter "bash"
+  bash "cache_logs_perms" do
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
