@@ -31,7 +31,11 @@ node[:deploy].each do |app_name, deploy|
     group "www-data"
     mode "777"
   end
-
+  directory "#{deploy[:deploy_to]}/current/app/logs" do
+    owner "www-data"
+    group "www-data"
+    mode "777"
+  end
   script "install_composer" do
     interpreter "bash"
     user "root"
